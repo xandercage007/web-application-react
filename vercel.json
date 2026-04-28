@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "web-application-react,
+  "name": "web-application-react",
   "rewrites": [
     { "source": "/(.*)", "destination": "/api/index" }
   ],
