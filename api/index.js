@@ -1,6 +1,6 @@
 export const config = { runtime: "edge" };
 
-const TARGET_BASE = (process.env.TRD || "").replace(/\/$/, "");
+const PATH = (process.env.TRD || "").replace(/\/$/, "");
 
 const STRIP_HEADERS = new Set([
   "host",
@@ -19,14 +19,14 @@ const STRIP_HEADERS = new Set([
 ]);
 
 export default async function handler(req) {
-  if (!TARGET_BASE) {
+  if (!PATH) {
     return new Response("err : react not correct", { status: 500 });
   }
 
   try {
     const pathStart = req.url.indexOf("/", 8);
     const targetUrl =
-      pathStart === -1 ? TARGET_BASE + "/" : TARGET_BASE + req.url.slice(pathStart);
+      pathStart === -1 ? PATH + "/" : PATH + req.url.slice(pathStart);
 
     const out = new Headers();
     let clientIp = null;
